@@ -1,0 +1,323 @@
+﻿@model IEnumerable<ECommerce.Entities.Entities.ShopEntities.Concrete.Product>
+<head>
+    <script src="~/js/HomeIndex.js"></script>
+    <link rel="stylesheet1" href="~/css/HomeIndex.css" />
+    <link rel="stylesheet2" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet3" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet4" href="~/ECommerce.UI.styles.css" asp-append-version="true" />
+    <link href="~/css/bootstrap.css" rel="stylesheet5">
+    <link href="~/lib/jquery/" />
+</head>
+@{
+    double totalPrice = 0;
+}
+<style>
+    .padding {
+        padding: 5rem !important;
+        margin-left: 300px;
+    }
+
+    .card {
+        margin-bottom: 1.5rem;
+    }
+
+    .card {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 1px solid #c8ced3;
+        border-radius: .25rem;
+    }
+
+    .card-header:first-child {
+        border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
+    }
+
+    .card-header {
+        padding: .75rem 1.25rem;
+        margin-bottom: 0;
+        background-color: #f0f3f5;
+        border-bottom: 1px solid #c8ced3;
+    }
+
+    .card-body {
+        flex: 1 1 auto;
+        padding: 1.25rem;
+    }
+
+    .form-control:focus {
+        color: #5c6873;
+        background-color: #fff;
+        border-color: #c8ced3 !important;
+        outline: 0;
+        box-shadow: 0 0 0 #F44336;
+    }
+</style>
+
+<div style="display:flex;">
+    <div id="payingCard" style="display:none;margin:auto;" class="padding">
+        <div style="justify-content:left;" class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Kredi Kartı</strong>
+                        <small>Kart bilgilerinizi giriniz</small>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+
+
+
+                                    <label for="name">Name</label>
+                                    <input class="form-control" id="name" type="text" placeholder="Enter your name">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="ccnumber">Credit Card Number</label>
+
+
+                                    <div class="input-group">
+                                        <input id="ccnumber" class="form-control" type="text" placeholder="0000 0000 0000 0000" autocomplete="off">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">
+                                                <i class="mdi mdi-credit-card"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-sm-4">
+                                <label for="ccmonth">Month</label>
+                                <select class="form-control" id="ccmonth">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    <option>10</option>
+                                    <option>11</option>
+                                    <option>12</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label for="ccyear">Year</label>
+                                <select class="form-control" id="ccyear">
+                                    <option>2014</option>
+                                    <option>2015</option>
+                                    <option>2016</option>
+                                    <option>2017</option>
+                                    <option>2018</option>
+                                    <option>2019</option>
+                                    <option>2020</option>
+                                    <option>2021</option>
+                                    <option>2022</option>
+                                    <option>2023</option>
+                                    <option>2024</option>
+                                    <option>2025</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="cvv">CVV/CVC</label>
+                                    <input class="form-control" id="cvv" type="text" placeholder="123">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-sm btn-success float-right" type="submit">
+                            <i class="mdi mdi-gamepad-circle"></i> Continue
+                        </button>
+                        <button class="btn btn-sm btn-danger" type="reset">
+                            <i class="mdi mdi-lock-reset"></i> Reset
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="paySummary" style="width:500px; display:none;" class="card">
+        <div class="card-body mx-4">
+            <div class="container">
+                <p class="my-5 mx-5" style="font-size: 30px;">Thank for your purchase</p>
+                <div class="row">
+                    <ul class="list-unstyled">
+                        <li class="text-black">@User.Identity.Name</li>
+                        <li class="text-black mt-1">@DateTime.Now</li>
+                    </ul>
+                    <hr>
+                    <div class="col-xl-10">
+                        <p>Toplam Ürün Fiyatı</p>
+                    </div>
+                    <div class="col-xl-2">
+                        <p id="sumsecond" class="float-end">
+
+                        </p>
+                    </div>
+                    <hr>
+                </div>
+                <div class="row">
+                    <div class="col-xl-10">
+                        <p>Kargo Ücreti</p>
+                    </div>
+                    <div class="col-xl-2">
+                        <p class="float-end">
+                            19.90Tl
+                        </p>
+                    </div>
+                    <hr>
+                </div>
+
+                <hr style="border: 2px solid black;">
+            </div>
+            <div class="row text-black">
+
+                <div class="col-xl-12">
+                    <p id="sumThird" class="float-end fw-bold">
+
+                    </p>
+                </div>
+                <hr style="border: 2px solid black;">
+            </div>
+            <div>
+                <button id="paySubmit" onclick="paySubmitButton()" class="btn btn-primary" style="justify-items:center;">Ödemeyi Tamamla</button>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+<div id="payOK" style="display:none;">
+    <h1 style="color:green">Siparişiniz tamamlanmıştır.</h1>
+</div>
+
+<table id="itemSummary" class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Photo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Brand)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>
+                        <img style="width:100px;height:100px;" src="@string.Format("data:image/*;base64,{0}", Convert.ToBase64String(@product.Photo))">
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => product.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => product.Brand)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => product.Price)
+                    </td>
+                    @{
+                        totalPrice += (double)product.Price;
+                    }
+                </tr>
+            }
+
+        }
+
+        else
+        {
+            <tr>
+                <td>
+                    <h1 style="text-align:center;">Sepetiniz boş.</h1>
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+<hr />
+@{
+    totalPrice = totalPrice + 19.90;
+}
+<br />
+<br />
+<div id="summaryFirst" style="display: flex;">
+    <div style="display:grid">
+        <label>Toplam Tutar</label>
+        <span id="sum">@totalPrice TL</span>
+    </div>
+
+    <div style="margin-left:1000px">
+        <button id="payButton" class="btn btn-primary">Öde</button>
+    </div>
+</div>
+<script>
+    var paybutton = document.getElementById("payButton");
+
+    payButton.addEventListener("click", getToPaySection);
+    var totalPrice = document.getElementById("sum").innerHTML;
+    document.getElementById("sumsecond").textContent = totalPrice;
+
+
+    function getToPaySection() {
+        document.getElementById("itemSummary").style.display = "none";
+        document.getElementById("summaryFirst").style.display = "none";
+        document.getElementById("paySummary").style.display = "block";
+        document.getElementById("payingCard").style.display = "block";
+        document.getElementById("sumsecond").textContent = totalPrice;
+        document.getElementById("sumThird").textContent = totalPrice;
+    };
+
+    function paySubmitButton() {
+        if (document.getElementById("name").innerHTML != "" &&
+            document.getElementById("name").innerHTML != null &&
+            document.getElementById("ccnumber").innerHTML != "" &&
+            document.getElementById("ccnumber").innerHTML != null &&
+            document.getElementById("ccmonth") != null &&
+            document.getElementById("ccyear") != null) {
+            document.getElementById("paySummary").style.display = "none";
+            document.getElementById("payingCard").style.display = "none";
+            document.getElementById("payOK").style.display = "block";
+        } else{
+            alert("Lütfen bilgileriniz tam giriniz!")
+        }
+
+
+    }
+</script>
+
+

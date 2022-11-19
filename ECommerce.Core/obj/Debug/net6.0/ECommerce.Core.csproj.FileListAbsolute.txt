@@ -1,0 +1,15 @@
+C:\Users\For_G\source\repos\ECommerce.UI\ECommerce.Core\bin\Debug\net6.0\ECommerce.Core.deps.json
+C:\Users\For_G\source\repos\ECommerce.UI\ECommerce.Core\bin\Debug\net6.0\ECommerce.Core.dll
+C:\Users\For_G\source\repos\ECommerce.UI\ECommerce.Core\bin\Debug\net6.0\ECommerce.Core.pdb
+C:\Users\For_G\source\repos\ECommerce.UI\ECommerce.Core\bin\Debug\net6.0\ECommerce.Entities.dll
+C:\Users\For_G\source\repos\ECommerce.UI\ECommerce.Core\bin\Debug\net6.0\ECommerce.Entities.pdb
+C:\Users\For_G\source\repos\ECommerce.UI\ECommerce.Core\obj\Debug\net6.0\ECommerce.Core.csproj.AssemblyReference.cache
+C:\Users\For_G\source\repos\ECommerce.UI\ECommerce.Core\obj\Debug\net6.0\ECommerce.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\For_G\source\repos\ECommerce.UI\ECommerce.Core\obj\Debug\net6.0\ECommerce.Core.AssemblyInfoInputs.cache
+C:\Users\For_G\source\repos\ECommerce.UI\ECommerce.Core\obj\Debug\net6.0\ECommerce.Core.AssemblyInfo.cs
+C:\Users\For_G\source\repos\ECommerce.UI\ECommerce.Core\obj\Debug\net6.0\ECommerce.Core.csproj.CoreCompileInputs.cache
+C:\Users\For_G\source\repos\ECommerce.UI\ECommerce.Core\obj\Debug\net6.0\ECommerce.Core.csproj.CopyComplete
+C:\Users\For_G\source\repos\ECommerce.UI\ECommerce.Core\obj\Debug\net6.0\ECommerce.Core.dll
+C:\Users\For_G\source\repos\ECommerce.UI\ECommerce.Core\obj\Debug\net6.0\refint\ECommerce.Core.dll
+C:\Users\For_G\source\repos\ECommerce.UI\ECommerce.Core\obj\Debug\net6.0\ECommerce.Core.pdb
+C:\Users\For_G\source\repos\ECommerce.UI\ECommerce.Core\obj\Debug\net6.0\ref\ECommerce.Core.dll

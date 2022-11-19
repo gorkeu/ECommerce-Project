@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ECommerce.Entities.Entities.ShopEntities.Concrete.Product>
+
+@{
+    ViewData["Title"] = "LowerProducts";
+}
+
+<h1>Lower Products</h1>
+
+<div class="row">
+
+    @foreach (var product in Model)
+    {
+        <div class="col-md-3">
+            <div style="width:300px;height:300px;margin-bottom:150px;" class="card">
+                <div style="display:inline;" class="image-container">
+                    <div class="first">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="wishlist">
+                                <i class="fa fa-fa-heart"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <img src="@string.Format("data:image/*;base64,{0}", Convert.ToBase64String(@product.Photo))"
+                     class="img-fluid rounded thumbnail-image">
+                </div>
+                <div style="width:282px;height:70px;" class="product-detail-container p-2">
+
+                    <div style="margin-bottom:40px;" class="d-flex justify-content-between align-items-center">
+
+                        <h5 style="font:bold"  id="@product.Id" class="dress-name">@product.Name</h5>
+
+                        <div class="d-flex flex-column mb-2">
+                            <span class="new-price">@product.Price TL</span>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align:center;margin-bottom:100px;">
+                    <button type="button"  onclick="addToCart()" class="btn btn-primary">Add To Cart</button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<script >
+    function addToCart() => {
+        let product = document.getElementsByClassName('dress-name');
+        
+
+
+    }
+</script>

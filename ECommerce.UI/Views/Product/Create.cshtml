@@ -1,0 +1,101 @@
+﻿@model (ECommerce.Entities.Entities.ShopEntities.Concrete.Product, ECommerce.Entities.Entities.ShopEntities.Concrete.PhotoCapture.FileUpload)
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1 style="text-align:center;">Create a new product</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4" style="margin:auto;">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input name="Name" class="form-control" placeholder="Name"/>
+                <span asp-validation-for="Item1.Name" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input name="Description" class="form-control" placeholder="Description" />
+                <span asp-validation-for="Item1.Description" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="Item1.Brand" class="control-label"></label>
+                <select name="Brand" class="form-control">
+                    <option>Adidas</option>
+                    <option>Nike</option>
+                    <option>Jordan</option>
+                </select>
+                <span asp-validation-for="Item1.Brand" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label  class="control-label">Type</label>
+                <select name="Category.Id" class="form-control"">
+                    @foreach (var category in ViewBag.categories)
+                    {
+                        <option value="@category.Id">@category.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="Item1.Category" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label  class="control-label"></label>
+                <select name="Gender" class="form-control">
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Kids</option>
+                </select>
+                <span asp-validation-for="Item1.Gender" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="Unisex" /> @Html.DisplayNameFor(model => model.Item1.Unisex)
+                </label>
+            </div>
+            <br />
+            <div class="form-group">
+                
+                <input name="Price" class="form-control" placeholder="Price" />
+                <span asp-validation-for="Item1.Price" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                
+                <input name="Stock" class="form-control" placeholder="Stock"/>
+                <span asp-validation-for="Item1.Stock" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label  class="control-label"></label>
+                <select name="BodyPart" class="form-control">
+                    <option>Upper</option>
+                    <option>Lower</option>
+                    <option>Shoe</option>
+                </select>
+                <span asp-validation-for="Item1.BodyPart" class="text-danger"></span>
+            </div>
+            <br />
+
+            <div class="form-group">
+                <input type="file" class="form-control" accept="image/*" name="File" />
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
